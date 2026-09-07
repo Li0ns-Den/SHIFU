@@ -3505,6 +3505,121 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:GND3"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND3"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND3\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND3_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND3_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 81.28 113.03)
@@ -3948,7 +4063,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 97.79) (xy 173.99 99.06)
+			(xy 167.64 93.98) (xy 167.64 99.06)
 		)
 		(stroke
 			(width 0)
@@ -4088,6 +4203,16 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 93.98) (xy 172.72 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "447712b9-21b7-4553-89b7-a054354429e6")
+	)
+	(wire
+		(pts
 			(xy 83.82 92.71) (xy 83.82 57.15)
 		)
 		(stroke
@@ -4105,6 +4230,16 @@
 			(type default)
 		)
 		(uuid "48a08a39-6d8c-44c1-8858-9e163592c33d")
+	)
+	(wire
+		(pts
+			(xy 172.72 96.52) (xy 177.8 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48cb017f-1b47-4efe-8dd1-e889f57853c9")
 	)
 	(wire
 		(pts
@@ -4295,6 +4430,16 @@
 			(type default)
 		)
 		(uuid "75e14599-2390-4bb3-9f53-b75e4a6c0892")
+	)
+	(wire
+		(pts
+			(xy 167.64 99.06) (xy 173.99 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "772a7709-b4df-4abb-bb40-44d4c01a8677")
 	)
 	(wire
 		(pts
@@ -4678,7 +4823,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 93.98) (xy 168.91 101.6)
+			(xy 162.56 93.98) (xy 162.56 101.6)
 		)
 		(stroke
 			(width 0)
@@ -4768,7 +4913,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 101.6) (xy 177.8 101.6)
+			(xy 162.56 101.6) (xy 177.8 101.6)
 		)
 		(stroke
 			(width 0)
@@ -5155,84 +5300,6 @@
 			(type default)
 		)
 		(uuid "ffa526fe-1ae8-463a-96a6-e3eb8584fac7")
-	)
-	(symbol
-		(lib_id "power:GND2")
-		(at 52.07 146.05 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0241e8fd-6f61-479e-8837-c4ab5890e41e")
-		(property "Reference" "#PWR02"
-			(at 52.07 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND2"
-			(at 52.07 151.13 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 52.07 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 52.07 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND2\" , ground"
-			(at 52.07 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fc2bd9fc-5a05-4014-9c02-4b34607d31ee")
-		)
-		(instances
-			(project "DAQ_V1.1"
-				(path "/689c7424-94dc-4676-9b2f-e933ad2b5602"
-					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -6273,7 +6340,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 168.91 93.98 180)
+		(at 162.56 93.98 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6284,7 +6351,7 @@
 		(fields_autoplaced yes)
 		(uuid "42d80435-5663-4af0-9e38-efc50e4b5dfe")
 		(property "Reference" "#PWR04"
-			(at 168.91 87.63 0)
+			(at 162.56 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6295,7 +6362,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 168.91 88.9 0)
+			(at 162.56 88.9 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6305,7 +6372,7 @@
 			)
 		)
 		(property "Footprint" "PCM_arduino-library:Arduino_Mega2560_R3_Shield"
-			(at 168.91 93.98 0)
+			(at 162.56 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6316,7 +6383,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 168.91 93.98 0)
+			(at 162.56 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6327,7 +6394,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 168.91 93.98 0)
+			(at 162.56 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6430,6 +6497,84 @@
 			(project "DAQ_V1.1"
 				(path "/689c7424-94dc-4676-9b2f-e933ad2b5602"
 					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND3")
+		(at 52.07 146.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4eda45b1-fef5-4f55-ad45-1fcc957e57fc")
+		(property "Reference" "#PWR02"
+			(at 52.07 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND3"
+			(at 52.07 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 52.07 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 52.07 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND3\" , ground"
+			(at 52.07 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ea70c8f7-92a6-48e2-9920-86c5e3ffeca6")
+		)
+		(instances
+			(project "DAQ_V1.1"
+				(path "/689c7424-94dc-4676-9b2f-e933ad2b5602"
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -7309,7 +7454,7 @@
 	)
 	(symbol
 		(lib_id "power:GND2")
-		(at 173.99 97.79 180)
+		(at 167.64 93.98 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7320,7 +7465,7 @@
 		(fields_autoplaced yes)
 		(uuid "f635673b-967a-4b32-9d9d-209cbd06543c")
 		(property "Reference" "#PWR01"
-			(at 173.99 91.44 0)
+			(at 167.64 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7331,7 +7476,7 @@
 			)
 		)
 		(property "Value" "GND2"
-			(at 173.99 92.71 0)
+			(at 167.64 88.9 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7341,7 +7486,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.99 97.79 0)
+			(at 167.64 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7352,7 +7497,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 173.99 97.79 0)
+			(at 167.64 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7363,7 +7508,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND2\" , ground"
-			(at 173.99 97.79 0)
+			(at 167.64 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7380,6 +7525,84 @@
 			(project "DAQ_V1.1"
 				(path "/689c7424-94dc-4676-9b2f-e933ad2b5602"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND3")
+		(at 172.72 93.98 0)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f6690028-1713-48a5-824f-68c4823d5315")
+		(property "Reference" "#PWR06"
+			(at 172.72 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND3"
+			(at 172.72 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 172.72 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 172.72 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND3\" , ground"
+			(at 172.72 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e8f6c424-3ec1-4cfa-96c0-acd9357f40de")
+		)
+		(instances
+			(project "DAQ_V1.1"
+				(path "/689c7424-94dc-4676-9b2f-e933ad2b5602"
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
