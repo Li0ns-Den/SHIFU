@@ -48,23 +48,26 @@ def list_active_ports():
 
     return default
 
-print("""
 
- _____  _   _  _____ ______ _   _ 
-/  ___|| | | ||_   _||  ___| | | |
-\ `--. | |_| |  | |  | |_  | | | |
- `--. \|  _  |  | |  |  _| | | | |
-/\__/ /| | | |__| |__| |_  | |_| |
-\____(_)_| |_(_)___(_)_(_)  \___/                                                              
+print('=' * 50)
+print("""         ____  _   _  _____ ______ _   _ 
+       /  ___|| | | ||_   _||  ___| | | |
+       \ `--. | |_| |  | |  | |_  | | | |
+        `--. \|  _  |  | |  |  _| | | | |
+       /\__/ /| | | |__| |__| |_  | |_| |
+       \____(_)_| |_(_)___(_)_(_)  \___/      
 """)
-
-print(f'Avaliable ports:')
+print('=' * 50)
+print ("SHIFU - Sensing Heat & Intense Fluid Uh-ohs")
+print('=' * 50)
 # listing active ports
 default_dev = list_active_ports()
 default_baud = 115200
+default_name = f'output_{str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))}.csv'
 
 PORT = input_with_preset("Enter port name: ", f'{default_dev}')
 BAUD = input_with_preset("Enter baud rate: ", f'{default_baud}')
+filename = input_with_preset("Enter log file name: ", f'{default_name}')
 
 # Pressure transducer mapping
 Amax = 20e-3
@@ -84,8 +87,6 @@ try:
 
     ser.write((input() + "\n").encode("utf-8"))
     ser.flush()
-
-    filename = f'output_{str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))}.csv'
     with open(filename, 'a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
 

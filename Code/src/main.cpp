@@ -10,7 +10,7 @@ int ptVal[8];
 void setup() {
   // initializing
   Serial.begin(115200);
-  Serial.println("Initialized, press any key or enter to continue");
+  Serial.println("Initialized, press enter to continue");
 
   while (Serial.available() == 0) {}  // waiting
 
@@ -35,7 +35,7 @@ void loop() {
   }
   Serial.println();
     
-  delay(30);
+  delay(50);
 }
 
 
