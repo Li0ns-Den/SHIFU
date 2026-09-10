@@ -6,7 +6,8 @@
 	(property "Reference" "REF**"
 		(at 0 0.5 0)
 		(layer "F.SilkS")
-		(uuid "bd697621-ec69-429d-b8ec-d74d8cf5e7da")
+		(hide yes)
+		(uuid "c2ebc6bf-070d-48e9-b679-8959a6d36d57")
 		(effects
 			(font
 				(size 1 1)
@@ -14,10 +15,11 @@
 			)
 		)
 	)
-	(property "Value" "hw-045"
+	(property "Value" "~"
 		(at 0 -0.5 0)
 		(layer "F.Fab")
-		(uuid "ce26540a-ae2b-48e2-9921-048c087cfd1e")
+		(hide yes)
+		(uuid "a3b17301-b4de-409a-a22c-64f6b2ada281")
 		(effects
 			(font
 				(size 1 1)
@@ -29,7 +31,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "13d06cbe-fa53-4acb-af29-2980473a047b")
+		(uuid "874db6f7-16b8-4d13-84f0-f095ca87c5d7")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -40,13 +42,15 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "f9df11ab-8e69-46b2-877e-563378c81786")
+		(uuid "e53bd2fe-f893-45ff-8269-29e97b046151")
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 	)
+	(sheetname "/")
+	(sheetfile "DAQ_V1.1.kicad_sch")
 	(attr through_hole)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
@@ -57,7 +61,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "35696134-f574-48a8-aa03-0dfbc2045143")
+		(uuid "432b0fba-e3e3-4b6e-803a-dae927f41eae")
 	)
 	(fp_line
 		(start -18.3 7)
@@ -67,7 +71,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "47b2619b-65cb-4c0d-9e5d-cbdd311eedd7")
+		(uuid "a937bdcf-519b-4c00-96d8-4a7153e35258")
 	)
 	(fp_line
 		(start -18.3 7)
@@ -77,7 +81,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "4bca653b-2cee-420b-92f0-9bcc936d94ac")
+		(uuid "ccb77026-b808-42de-bbc1-41cc77e03639")
 	)
 	(fp_line
 		(start -17.3 -9)
@@ -87,7 +91,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "6bc94aba-5230-4e25-a389-f6891f11f4c2")
+		(uuid "3857c0c8-b351-4f5c-a99b-c44db2da1352")
 	)
 	(fp_line
 		(start -17.3 8)
@@ -97,7 +101,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "bcd8d299-b858-40ba-bdf3-3f17cc51e620")
+		(uuid "0eb3bf92-5dcf-445c-a80d-f7b8bde10cc3")
 	)
 	(fp_line
 		(start 17.7 8)
@@ -107,7 +111,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "06a158aa-9bf8-44f8-8de3-0cf6fda91b16")
+		(uuid "d3db45d8-d9c4-41de-9262-a00f3a423a7a")
 	)
 	(fp_line
 		(start 18.7 -8)
@@ -117,7 +121,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "055ef1e4-bfef-4088-8272-b1965b27baf9")
+		(uuid "5b9af4ff-7799-49ab-9fea-ab8d41111db1")
 	)
 	(fp_line
 		(start 18.7 7)
@@ -127,35 +131,46 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "542478df-5dc0-4736-a3d2-7c1efc0caeeb")
+		(uuid "238c3fa1-2b9e-4f99-bd4c-67031cda08ec")
 	)
 	(pad "1" smd roundrect
 		(at -15 2.9)
 		(size 5 3)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
-		(uuid "e69fe447-b5ed-4d90-8651-49b49bcdb7a8")
+		(uuid "bc1cd08a-a416-460f-a49b-71c4356f9aaf")
 	)
 	(pad "2" smd roundrect
 		(at -15 -3.9)
 		(size 5 3)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
-		(uuid "8928b42a-7c36-4439-9ec0-a471395f942b")
+		(uuid "e61e9eb6-3a47-4f93-a238-80a8aba7b35a")
 	)
 	(pad "3" smd roundrect
 		(at 15.5 2.9)
 		(size 5 3)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
-		(uuid "3417c0f8-3341-4fd4-8564-d52c380a3dc3")
+		(uuid "74f08e00-27da-44f2-84d4-5d7c957e1230")
 	)
 	(pad "4" smd roundrect
 		(at 15.5 -3.9)
 		(size 5 3)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
-		(uuid "a14f220d-ac95-4cf2-8e4b-0228db1384d4")
+		(uuid "89f53755-704b-47d4-a4c2-c2f008b91a9a")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/CustomLibrary.pretty/MT3608 Converter.STEP"
+		(offset
+			(xyz 0.05 0.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
 )

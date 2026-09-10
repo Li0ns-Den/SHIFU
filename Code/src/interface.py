@@ -1,9 +1,12 @@
 import serial
 import serial.tools.list_ports
 import csv
+import sys
 import time
 import datetime
 import readline
+import math
+from collections import deque
 
 def input_with_preset(prompt, preset):
     readline.set_startup_hook(lambda: readline.insert_text(preset))
@@ -33,7 +36,7 @@ def list_active_ports():
         return
 
     print("Connected Serial Ports:")
-    print("-" * 50)
+    print("-" * 80)
 
     for port in ports:
         # port.device is the name (e.g., COM3 or /dev/ttyUSB0)
@@ -42,28 +45,34 @@ def list_active_ports():
             print(f"Port: {port.device}")
             print(f"Description: {port.description}")
             print(f"Hardware ID: {port.hwid}")
-            print("-" * 50)
+            print("-" * 80)
             if default is None:
                 default = port.device
 
     return default
 
-
-print('=' * 50)
-print("""         ____  _   _  _____ ______ _   _ 
-       /  ___|| | | ||_   _||  ___| | | |
-       \ `--. | |_| |  | |  | |_  | | | |
-        `--. \|  _  |  | |  |  _| | | | |
-       /\__/ /| | | |__| |__| |_  | |_| |
-       \____(_)_| |_(_)___(_)_(_)  \___/      
+print("")
+print('=' * 80)
+print("""                        ____  _   _  _____ ______ _   _ 
+                      /  ___|| | | ||_   _||  ___| | | |
+                      \ `--. | |_| |  | |  | |_  | | | |
+                       `--. \|  _  |  | |  |  _| | | | |
+                      /\__/ /| | | |__| |__| |_  | |_| |
+                      \____(_)_| |_(_)___(_)_(_)  \___/      
 """)
-print('=' * 50)
-print ("SHIFU - Sensing Heat & Intense Fluid Uh-ohs")
-print('=' * 50)
+print('=' * 80)
+print("                  SHIFU - Sensing Heat & Intense Fluid Uh-ohs                   ")
+print('-' * 80)
+print('***                     GNU General Public License 2.0                       ***')
+print('=' * 80)
 # listing active ports
 default_dev = list_active_ports()
 default_baud = 115200
 default_name = f'output_{str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))}.csv'
+
+if default_dev == None:
+    print('No avaliable serial devices found: Exiting SHIFU')
+    sys.exit()
 
 PORT = input_with_preset("Enter port name: ", f'{default_dev}')
 BAUD = input_with_preset("Enter baud rate: ", f'{default_baud}')
@@ -72,11 +81,18 @@ filename = input_with_preset("Enter log file name: ", f'{default_name}')
 # Pressure transducer mapping
 Amax = 20e-3
 Amin = 4e-3
-R = 250
-Vmax = Amax * R
-Vmin = Amin * R
+# Setting calibrating resistor values for PT0 - PT7
+R = [210.0, 219.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+# R = 250
+Vmax = [Amax * r for r in R]
+Vmin = [Amin * r for r in R]
 Pmax = 250
 Pmin = 0
+
+rollingSample = 100
+
+rollingP = [deque(maxlen=rollingSample) for _ in range(8)]
+P_avg = [0.0] * 8
 
 ser = serial.Serial(PORT, BAUD, timeout = 1)
 print(f'Listening on {PORT}')
@@ -111,7 +127,13 @@ try:
 
                             ptVal = [int(val) for val in data_fields[1:9]]
                             volt = [float(val) * 5.0 / 1023.0 for val in ptVal]
-                            pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v in volt]
+                            pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v, Vmin, Vmax in zip(volt, Vmin, Vmax)]
+                            
+                            for i in range(8):
+
+                                rollingP[i].append(pressure[i])
+                                P_avg[i] = sum(rollingP[i]) / len(rollingP[i])
+
 
                             cal_time = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
@@ -119,12 +141,15 @@ try:
                             csv_writer.writerow(row)
                             csv_file.flush()
 
-                            pt_string = " | ".join(f"PT{i}: {p:.1f}" for i, p in enumerate(pressure))
+                            pt_string = " | ".join(f"PT{i}: {p:.1f}" for i, p in enumerate(P_avg))
 
-                            # Print it right alongside your time
-                            print(f"{seconds:.2f}s | {pt_string}")
+                            dashboard = (
+                            f"\033[2A\r\033[K" + "-" * 80 + "\n"
+                            f"\r\033[K{seconds:.2f}s | {pt_string}\n"
+                            "\r\033[K" + "-" * 80
+                            )
 
-
+                            print(dashboard, end="", flush=True)
 
                     except (ValueError, IndexError, UnicodeDecodeError):
                         continue
