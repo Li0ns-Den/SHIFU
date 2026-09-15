@@ -82,12 +82,14 @@ filename = input_with_preset("Enter log file name: ", f'{default_name}')
 Amax = 20e-3
 Amin = 4e-3
 # Setting calibrating resistor values for PT0 - PT7
-R = [210.0, 219.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+R = [220.0, 220.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
 # R = 250
 Vmax = [Amax * r for r in R]
 Vmin = [Amin * r for r in R]
-Pmax = 250
-Pmin = 0
+Pmax = [250.0, 40.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+# Pmax = 250
+Pmin = [0.0, 0.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+# Pmin = 0
 
 rollingSample = 100
 
@@ -98,7 +100,7 @@ ser = serial.Serial(PORT, BAUD, timeout = 1)
 print(f'Listening on {PORT}')
 
 try:
-    line = ser.readline().decode('utf-8').strip()
+    line = ser.readline().decode('utf-8').strip()   
     print(line)
 
     ser.write((input() + "\n").encode("utf-8"))
@@ -127,7 +129,7 @@ try:
 
                             ptVal = [int(val) for val in data_fields[1:9]]
                             volt = [float(val) * 5.0 / 1023.0 for val in ptVal]
-                            pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v, Vmin, Vmax in zip(volt, Vmin, Vmax)]
+                            pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v, Vmin, Vmax, Pmin, Pmax in zip(volt, Vmin, Vmax, Pmin, Pmax)]
                             
                             for i in range(8):
 
