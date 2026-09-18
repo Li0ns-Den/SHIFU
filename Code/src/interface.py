@@ -83,13 +83,12 @@ Amax = 20e-3
 Amin = 4e-3
 # Setting calibrating resistor values for PT0 - PT7
 R = [220.0, 220.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
-# R = 250
+# Setting pressure ranges on PT0 - PT7
+Pmax = [250.0, 40.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+Pmin = [0.0, 0.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+
 Vmax = [Amax * r for r in R]
 Vmin = [Amin * r for r in R]
-Pmax = [250.0, 40.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
-# Pmax = 250
-Pmin = [0.0, 0.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
-# Pmin = 0
 
 rollingSample = 100
 
@@ -108,7 +107,7 @@ try:
     with open(filename, 'a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
 
-        headers = (["timestamp", "elapsed(s)"] + [f"PT{i}" for i in range(8)])
+        headers = (["timestamp", "elapsed(s)"] + [f"PT{i}" for i in range(8)] + [f"TC{i}" for i in range(4)])
         csv_writer.writerow(headers)
         csv_file.flush()
 
@@ -122,33 +121,49 @@ try:
                     try:
                         data_fields = decoded_line.split(',')
 
-                        if len(data_fields) >= 9:
+                        if len(data_fields) >= 13:
 
-                            relTime = int(data_fields[0])
-                            seconds = relTime / 1000
+                            if len(data_fields) >= 9:
+                                relTime = int(data_fields[0])
+                                seconds = relTime / 1000
 
-                            ptVal = [int(val) for val in data_fields[1:9]]
-                            volt = [float(val) * 5.0 / 1023.0 for val in ptVal]
-                            pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v, Vmin, Vmax, Pmin, Pmax in zip(volt, Vmin, Vmax, Pmin, Pmax)]
-                            
-                            for i in range(8):
+                                ptVal = [int(val) for val in data_fields[1:9]]
+                                volt = [float(val) * 5.0 / 1023.0 for val in ptVal]
+                                pressure = [Pmin + (v - Vmin) * ((Pmax - Pmin) / (Vmax - Vmin)) for v, Vmin, Vmax, Pmin, Pmax in zip(volt, Vmin, Vmax, Pmin, Pmax)]
+                                
+                                for i in range(8):
 
-                                rollingP[i].append(pressure[i])
-                                P_avg[i] = sum(rollingP[i]) / len(rollingP[i])
+                                    rollingP[i].append(pressure[i])
+                                    P_avg[i] = sum(rollingP[i]) / len(rollingP[i])
 
+                            tcVal = [float(val) for val in data_fields[9:13]]
+                            temperature = tcVal
 
                             cal_time = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
-                            row = [cal_time, seconds] + pressure
+                            row = [cal_time, seconds] + pressure + temperature
                             csv_writer.writerow(row)
                             csv_file.flush()
 
                             pt_string = " | ".join(f"PT{i}: {p:.1f}" for i, p in enumerate(P_avg))
+                            tc_string = " | ".join(f"TC{i}: {t:.1f}°C" for i, t in enumerate(temperature))
+
+                            # dashboard = (
+                                # f"\033[4A\r\033[K" + "-" * 80 + "\n"
+                                # f"\r\033[K{seconds:.2f}s | {pt_string}\n"
+                                # f"\r\033[K{tc_string}\n"
+                                # "\r\033[K" + "-" * 80
+                            # )
 
                             dashboard = (
-                            f"\033[2A\r\033[K" + "-" * 80 + "\n"
-                            f"\r\033[K{seconds:.2f}s | {pt_string}\n"
-                            "\r\033[K" + "-" * 80
+                                f"\033[H"                            # Move cursor to top-left
+                                f"SHIFU TELEMETRY SYSTEM\033[K\n"  
+                                f"{'-' * 80}\033[K\n"                
+                                f"Time:     | {seconds:.2f}s\033[K\n"
+                                f"Pressure: | {pt_string}\033[K\n"
+                                f"Temp:     | {tc_string}\033[K\n"    # Starts cleanly on the left margin
+                                f"{'-' * 80}\033[K\n"        
+                                f"\033[J"                            # Clear any stray code below
                             )
 
                             print(dashboard, end="", flush=True)
