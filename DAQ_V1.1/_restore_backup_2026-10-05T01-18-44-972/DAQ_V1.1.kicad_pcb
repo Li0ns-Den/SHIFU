@@ -118,7 +118,7 @@
 		(capping no)
 		(filling no)
 		(pcbplotparams
-			(layerselection 0x00000000_00000000_55555555_575555ff)
+			(layerselection 0x00000000_00000000_55555555_57555520)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
@@ -147,11 +147,11 @@
 			(sketchdnponfab yes)
 			(crossoutdnponfab yes)
 			(subtractmaskfromsilk no)
-			(outputformat 1)
+			(outputformat 3)
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "Gerber/")
+			(outputdirectory "")
 		)
 	)
 	(footprint "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-4-3.5-H_1x04_P3.50mm_Horizontal"
@@ -1418,20 +1418,6 @@
 		(path "/1fa7f2b7-183f-4964-8bf9-747ff53d5f6d")
 		(sheetname "/")
 		(sheetfile "DAQ_V1.1.kicad_sch")
-		(units
-			(unit
-				(name "A")
-				(pins "D0" "D1" "D19" "D18" "D17" "D16" "D15" "D14" "D20" "D21" "SDA"
-					"SCL" "A0" "A1" "A2" "A3" "A4" "A5" "A6" "A7" "A8" "A9" "A10" "A11"
-					"A12" "A13" "A14" "A15" "AREF" "RST1" "IORF" "VIN" "5V1" "5V3" "5V4"
-					"3V3" "GND1" "GND2" "GND3" "GND5" "GND6" "MISO" "MOSI" "SCK" "RST2"
-					"5V2" "GND4" "D2" "D3" "D4" "D5" "D6" "D7" "D8" "D9" "D10" "D11" "D12"
-					"D13" "D22" "D23" "D24" "D25" "D26" "D27" "D28" "D29" "D30" "D31" "D32"
-					"D33" "D34" "D35" "D36" "D37" "D38" "D39" "D40" "D41" "D42" "D43" "D44"
-					"D45" "D46" "D47" "D48" "D49" "D50" "D51" "D52" "D53"
-				)
-			)
-		)
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
@@ -7405,7 +7391,7 @@
 				)
 			)
 		)
-		(property "Value" "1R"
+		(property "Value" "R"
 			(at 0 1.83 0)
 			(layer "F.Fab")
 			(uuid "f217029a-7fa0-4400-9f51-83254fb39354")
