@@ -82,10 +82,10 @@ filename = input_with_preset("Enter log file name: ", f'{default_name}')
 Amax = 20e-3
 Amin = 4e-3
 # Setting calibrating resistor values for PT0 - PT7
-R = [220.0, 220.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+R = [250.0, 250.0, 250.0, 250.0, 250.0, 250.0, 250.0, 250.0]
 # Setting pressure ranges on PT0 - PT7
-Pmax = [250.0, 40.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
-Pmin = [0.0, 0.0, math.nan, math.nan, math.nan, math.nan, math.nan, math.nan]
+Pmax = [250.0, 40.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+Pmin = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 Vmax = [Amax * r for r in R]
 Vmin = [Amin * r for r in R]
@@ -107,10 +107,16 @@ try:
     with open(filename, 'a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
 
-        headers = (["timestamp", "elapsed(s)"] + [f"PT{i}" for i in range(8)] + [f"TC{i}" for i in range(4)])
+        pt_headers = []
+        for i in range(4):
+            pt_headers.append(f"PT{i+1}_A")
+            pt_headers.append(f"PT{i+1}_B")
+
+        tc_headers = [f"TC{i+1}" for i in range(4)]
+        headers = ["timestamp", "elapsed(s)"] + pt_headers + tc_headers
+        
         csv_writer.writerow(headers)
         csv_file.flush()
-
         print(f"Logging started. Writing directly to {filename}")
 
         while True:
@@ -145,27 +151,25 @@ try:
                             csv_writer.writerow(row)
                             csv_file.flush()
 
-                            pt_string = " | ".join(f"PT{i}: {p:.1f}" for i, p in enumerate(P_avg))
-                            tc_string = " | ".join(f"TC{i}: {t:.1f}°C" for i, t in enumerate(temperature))
+                            # Map raw indices (0, 2, 4, 6) to PT0_A through PT3_A
+                            pt_string_A = " | ".join(f"PT{i+1} A: {P_avg[i*2]:.1f}" for i in range(4))
+                            
+                            # Map raw indices (1, 3, 5, 7) to PT0_B through PT3_B
+                            pt_string_B = " | ".join(f"PT{i+1} B: {P_avg[i*2+1]:.1f}" for i in range(4))
 
-                            # dashboard = (
-                                # f"\033[4A\r\033[K" + "-" * 80 + "\n"
-                                # f"\r\033[K{seconds:.2f}s | {pt_string}\n"
-                                # f"\r\033[K{tc_string}\n"
-                                # "\r\033[K" + "-" * 80
-                            # )
+                            tc_string = " | ".join(f"TC{i+1}: {t:.1f}°C" for i, t in enumerate(temperature))
 
                             dashboard = (
-                                f"\033[H"                            # Move cursor to top-left
+                                f"\033[H"                            
                                 f"SHIFU TELEMETRY SYSTEM\033[K\n"  
                                 f"{'-' * 80}\033[K\n"                
                                 f"Time:     | {seconds:.2f}s\033[K\n"
-                                f"Pressure: | {pt_string}\033[K\n"
-                                f"Temp:     | {tc_string}\033[K\n"    # Starts cleanly on the left margin
+                                f"Pressure: | {pt_string_A}\033[K\n"
+                                f"          | {pt_string_B}\033[K\n"   
+                                f"Temp:     | {tc_string}\033[K\n"    
                                 f"{'-' * 80}\033[K\n"        
-                                f"\033[J"                            # Clear any stray code below
+                                f"\033[J"                            
                             )
-
                             print(dashboard, end="", flush=True)
 
                     except (ValueError, IndexError, UnicodeDecodeError):
