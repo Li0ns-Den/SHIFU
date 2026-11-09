@@ -2,6 +2,10 @@
 Data acquisition system for combined fluid temperature and pressure 
 
 <p align="center">
+  <img src="DAQ_V1.1/Enclosure/IMG_8869.png" alt="Project Logo" width="1000">
+</p>
+
+<p align="center">
   <img src="DAQ_V1.1/Enclosure/render.png" alt="Project Logo" width="1000">
 </p>
 
